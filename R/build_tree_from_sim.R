@@ -148,21 +148,6 @@ alive_network_iterative <- function(network, list) {
   network
 }
 
-parse_node_string <- function(s, trailing_numeric = 3, time_pos = 1) {
-  s <- as.character(s)[1]
-  parts <- strsplit(trimws(s), "\\s+")[[1]]
-  nums <- suppressWarnings(as.numeric(parts))
-  idx <- which(!is.na(nums))
-  if (length(idx) < trailing_numeric) {
-    stop("Node string has too few numeric tokens: ", s)
-  }
-  tail_idx <- idx[(length(idx) - trailing_numeric + 1):length(idx)]
-  tail_vals <- nums[tail_idx]
-  if (time_pos < 1 || time_pos > length(tail_vals)) {
-    stop("Invalid time_pos")
-  }
-  list(key = s, time = tail_vals[time_pos])
-}
 
 edges_to_phylo_from_table <- function(network,
                                       trailing_numeric = 3,

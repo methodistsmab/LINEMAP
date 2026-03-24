@@ -30,3 +30,4 @@ plot_time_scaled <- function(phy, expand = 1.08, ...) {
   par(op)
   invisible(phy)
 }
+

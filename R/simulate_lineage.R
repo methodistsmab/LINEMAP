@@ -174,3 +174,4 @@ simulate_lineage <- function(Q.list,
     history = list(list_hg = list_hg, list_sg = list_sg)
   )
 }
+

@@ -46,3 +46,25 @@ prepare_Q_lists <- function(Q,
 
   list(Q = Q, Q.list = Q.list, Q.list1 = Q.list1, N = N)
 }
+
+row.normalize <- function(M) {
+  rs <- rowSums(M)
+  rs[rs == 0] <- 1
+  M / rs
+}
+
+rposnorm <- function(n, mean, sd) pmax(0, rnorm(n, mean, sd))
+
+
+parse_node_string <- function(s, trailing_numeric = 3, time_pos = 1) {
+  toks <- strsplit(trimws(s), "\\s+")[[1]]
+  n <- length(toks)
+  if (n < trailing_numeric + 1) stop("节点字符串太短：", s)
+  num_tail <- suppressWarnings(as.numeric(toks[(n - trailing_numeric + 1):n]))
+  if (all(is.na(num_tail))) stop("尾部数字全为 NA，无法解析：", s)
+  key_tokens <- toks[1:(n )]
+  key <- paste(key_tokens, collapse = "|")
+  t_abs <- as.numeric(num_tail[time_pos])
+  list(key = key, time = t_abs)
+}
+

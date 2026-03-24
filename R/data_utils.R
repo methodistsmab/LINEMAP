@@ -1,26 +1,3 @@
-#' @noRd
-row.normalize <- function(M) {
-  M <- as.matrix(M)
-  rs <- rowSums(M)
-  rs[!is.finite(rs) | rs == 0] <- 1
-  sweep(M, 1, rs, "/")
-}
-
-#' @noRd
-rposnorm <- function(n, mean, sd) {
-  x <- numeric(n)
-  for (i in seq_len(n)) {
-    repeat {
-      z <- stats::rnorm(1, mean = mean, sd = sd)
-      if (is.finite(z) && z > 0) {
-        x[i] <- z
-        break
-      }
-    }
-  }
-  x
-}
-
 #' Load example transition matrix
 #'
 #' Loads the bundled example transition matrix stored in `inst/extdata/X.Rdata`.

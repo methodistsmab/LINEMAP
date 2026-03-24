@@ -34,7 +34,8 @@ sample_subtrees <- function(phy, phy1, n_keep = 30, seed = NULL) {
 
   list(
     keep_tips = keep_tips,
-    phy_sub = keep.tip(phy, keep_tips),
-    phy_sub1 = keep.tip(phy1, keep_tips)
+    phy_sub = ape::keep.tip(phy, keep_tips),
+    phy_sub1 = ape::keep.tip(phy1, keep_tips)
   )
 }
+
