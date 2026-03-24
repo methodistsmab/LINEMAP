@@ -1,0 +1,15 @@
+Package: LINEMAP
+Title: Lineage Map Simulation and Phylogenetic Tree Construction
+Version: 0.1.0
+Authors@R: c(
+    person("LINEMAP", "Authors", role = c("aut", "cre"),
+           email = "your.email@example.com")
+    )
+Description: Simulates cell lineage histories with guide-RNA barcode dynamics,
+    builds phylogenetic trees from simulated edge tables, and provides helpers
+    for plotting and subtree sampling. Example transition data are included.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.0.0)
+Imports:
+    ape (>= 5.0)
