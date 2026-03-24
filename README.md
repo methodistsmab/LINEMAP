@@ -61,6 +61,8 @@ sub <- sample_subtrees(
 # Plot the sampled time-scaled subtree
 plot_time_scaled(sub$phy_sub1)
 ```
+
+## Output of the sample case
 ![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
 
 
