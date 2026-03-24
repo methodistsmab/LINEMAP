@@ -61,6 +61,8 @@ sub <- sample_subtrees(
 # Plot the sampled time-scaled subtree
 plot_time_scaled(sub$phy_sub1)
 ```
+![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
+
 
 A longer worked example ships as `inst/scripts/run_simulation.R` (open it from the installed package path or from this source tree). The narrative readme is under `inst/doc/LINEMAP_Readme.docx`.
 
