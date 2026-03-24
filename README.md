@@ -13,10 +13,10 @@ With [remotes](https://cran.r-project.org/package=remotes):
 
 ```r
 # if the Git repository root is this package folder (contains DESCRIPTION):
-remotes::install_github("YOUR_GITHUB_USER/YOUR_REPO")
+remotes::install_github("methodistsmab/LINEMAP")
 
 # if the package lives in a subfolder of the repository:
-remotes::install_github("YOUR_GITHUB_USER/YOUR_REPO", subdir = "LINEMAP")
+remotes::install_github("methodistsmab/LINEMAP", subdir = "LINEMAP")
 ```
 
 Replace `YOUR_GITHUB_USER` and `YOUR_REPO` with your account and repository name.
