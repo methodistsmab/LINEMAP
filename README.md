@@ -138,7 +138,10 @@ topology.comparison <- compare_tree_topology(
 7 TreeDistance_distance 0.00000000
 8  TripletDistance_norm 0.00000000
 ```
-![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/tree_comparison.jpg)
+
+<p align="center">
+<img src="https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/tree_comparison.jpg?raw=true" width="70%" alt="Alt text">
+</p>
 
 ### Step 5: compare pairwise MRCA heights and cell-depth relationships.
 ```
