@@ -118,10 +118,33 @@ topology.comparison <- compare_tree_topology(
   main_left = "Ground truth",
   main_right = "Predicted"
 )
+```
+###  Output of topology.comparison$similarity_scores
+```
+> topology.comparison$similarity_scores
+            metric     value
+1   cophenetic_cor 0.9832343
+2     bakers_gamma 0.9890536
+3 1 - entanglement 1.0000000
+4    RF_similarity 1.0000000
+5   Nye_similarity 1.0000000
+6   JRF_similarity 1.0000000
+```
+### Output of topology.comparison$distance_scores
+```
+> topology.comparison$distance_scores
+                 metric      value
+1    1 - cophenetic_cor 0.01676568
+2      1 - bakers_gamma 0.01094640
+3          entanglement 0.00000000
+4           RF_distance 0.00000000
+5          Nye_distance 0.00000000
+6          JRF_distance 0.00000000
+7 TreeDistance_distance 0.00000000
+8  TripletDistance_norm 0.00000000
+```
 
-topology.comparison$similarity_scores
-topology.comparison$distance_scores
-
+```
 # Step 5: compare pairwise MRCA heights and cell-depth relationships.
 time.lineage.comparison <- compare_time_lineage(
   true_tree_time = res$tree$phy,
