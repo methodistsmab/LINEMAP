@@ -1,6 +1,6 @@
 # LINEMAP
 
-R package for simulating lineage histories with guide-RNA barcode dynamics, building `ape` phylogenies from simulated edge tables, and plotting / subtree sampling.
+R package for simulating lineage histories with guide-RNA barcode dynamics.
 
 ## Requirements
 
