@@ -20,7 +20,7 @@ Replace `YOUR_GITHUB_USER` and `YOUR_REPO` with your account and repository name
 
 ## Quick start
 
-### simulation data
+### Simulation data
 ```r
 library(LINEMAP)
 
@@ -60,11 +60,8 @@ sub <- sample_subtrees(
 plot_time_scaled(sub$phy_sub1)
 
 ```
+### Step 0: reconstruct a LINEMAP tree from simulated barcode data
 ```
-# -------------------------------------------------------------------------
-# Reviewer example: reconstruct a LINEMAP tree from simulated barcode data
-# -------------------------------------------------------------------------
-
 # Prepare sampled cells and barcode sequences for reconstruction.
 sample <- sub$keep_tips
 sequence <- sequence_from_history(res$sim$history$list_hg[sample])
@@ -105,24 +102,6 @@ tree.LINEMAP <- build_tree_from_distance(
   drop_outgroup = TRUE
 )
 ```
-
-### Steps 1-3 can also be run in one call with the reconstruction wrapper:
-```
-tree.wrapper <- build_tree_from_sequence(
-  sequence = sequence,
-  P_or_list = res$prep$Q.list,
-  division = 16,
-  gRNA.num = 200,
-  method = "NJ",
-  add_C0 = TRUE,
-  root_outgroup = "C0",
-  drop_outgroup = TRUE,
-  missing_label = "MISSING"
-)
-
-tree.wrapper$tree
-```
-
 ### Step 4: compare the predicted tree with the ground-truth time-scaled tree.
 ```
 topology.comparison <- compare_tree_topology(
@@ -157,8 +136,6 @@ topology.comparison <- compare_tree_topology(
 7 TreeDistance_distance 0.00000000
 8  TripletDistance_norm 0.00000000
 ```
-
-
 ### Step 5: compare pairwise MRCA heights and cell-depth relationships.
 ```
 time.lineage.comparison <- compare_time_lineage(
@@ -222,7 +199,26 @@ $C0_to_cell_prob_dist
     C836     C841     C852     C874     C878     C907 
 1660.512 1610.366 1730.166 1569.442 1579.336 1598.827 
 ```
+## Output of the sample case
+![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
 
+# Wrapper code:
+### Steps 1-3 can also be run in one call with the reconstruction wrapper:
+```
+tree.wrapper <- build_tree_from_sequence(
+  sequence = sequence,
+  P_or_list = res$prep$Q.list,
+  division = 16,
+  gRNA.num = 200,
+  method = "NJ",
+  add_C0 = TRUE,
+  root_outgroup = "C0",
+  drop_outgroup = TRUE,
+  missing_label = "MISSING"
+)
+
+tree.wrapper$tree
+```
 ## Steps 4-5 can also be returned together with the comparison wrapper:
 ```
 combined.comparison <- compare_reconstructed_tree(
@@ -237,11 +233,6 @@ combined.comparison <- compare_reconstructed_tree(
 )
 
 combined.comparison
-
-```
-
-## Output of the sample case
-![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
 
 
 A longer worked example ships as `inst/scripts/run_simulation.R` 
