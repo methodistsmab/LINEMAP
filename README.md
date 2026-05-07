@@ -20,6 +20,7 @@ Replace `YOUR_GITHUB_USER` and `YOUR_REPO` with your account and repository name
 
 ## Quick start
 
+### simulation data
 ```r
 library(LINEMAP)
 
@@ -58,6 +59,8 @@ sub <- sample_subtrees(
 # Plot the sampled division-scaled ground-truth subtree
 plot_time_scaled(sub$phy_sub1)
 
+```
+```
 # -------------------------------------------------------------------------
 # Reviewer example: reconstruct a LINEMAP tree from simulated barcode data
 # -------------------------------------------------------------------------
@@ -66,7 +69,10 @@ plot_time_scaled(sub$phy_sub1)
 sample <- sub$keep_tips
 sequence <- sequence_from_history(res$sim$history$list_hg[sample])
 
-# Step 1: build missing-aware distance dictionaries.
+```
+
+### Step 1: build missing-aware distance dictionaries.
+```
 tabs_list_hgRNA <- build_pair_loglik_tables(
   P_or_list = res$prep$Q.list,
   division = 16
@@ -76,8 +82,10 @@ tabs_list_sgRNA <- build_pair_loglik_tables(
   P_or_list = res$prep$Q.list1,
   division = 16
 )
+```
 
-# Step 2: compute the probability distance matrix.
+### Step 2: compute the probability distance matrix.
+```
 distance.probability.matrix <- compute_prob_distance(
   sequence = sequence,
   tabs_list = tabs_list_hgRNA,
@@ -86,16 +94,20 @@ distance.probability.matrix <- compute_prob_distance(
   add_C0 = TRUE,
   missing_label = "MISSING"
 )
+```
 
-# Step 3: build a predicted LINEMAP tree from the distance matrix.
+### Step 3: build a predicted LINEMAP tree from the distance matrix.
+```
 tree.LINEMAP <- build_tree_from_distance(
   distance_matrix = distance.probability.matrix,
   method = "NJ",
   root_outgroup = "C0",
   drop_outgroup = TRUE
 )
+```
 
-# Steps 1-3 can also be run in one call with the reconstruction wrapper:
+### Steps 1-3 can also be run in one call with the reconstruction wrapper:
+```
 tree.wrapper <- build_tree_from_sequence(
   sequence = sequence,
   P_or_list = res$prep$Q.list,
@@ -109,8 +121,10 @@ tree.wrapper <- build_tree_from_sequence(
 )
 
 tree.wrapper$tree
+```
 
-# Step 4: compare the predicted tree with the ground-truth time-scaled tree.
+### Step 4: compare the predicted tree with the ground-truth time-scaled tree.
+```
 topology.comparison <- compare_tree_topology(
   tree1 = res$tree$phy,
   tree2 = tree.LINEMAP,
@@ -144,8 +158,9 @@ topology.comparison <- compare_tree_topology(
 8  TripletDistance_norm 0.00000000
 ```
 
+
+### Step 5: compare pairwise MRCA heights and cell-depth relationships.
 ```
-# Step 5: compare pairwise MRCA heights and cell-depth relationships.
 time.lineage.comparison <- compare_time_lineage(
   true_tree_time = res$tree$phy,
   true_tree_div = res$tree$phy1,
