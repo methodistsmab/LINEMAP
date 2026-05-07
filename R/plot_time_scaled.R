@@ -3,36 +3,34 @@
 #' Basic plotting helper for time-scaled phylogenies.
 #'
 #' @param phy A phylo object.
+#' @param expand Numeric scalar. Multiplier used to add right-side plotting
+#'   space beyond the maximum root-to-tip height.
 #' @param ... Additional arguments passed to \code{plot.phylo()}.
 #'
 #' @return Invisibly returns the input tree.
 #' @export
 
-plot_time_scaled <- function(phy, expand = 1.08) {
-  # library(ape)
+plot_time_scaled <- function(phy, expand = 1.08, ...) {
+  # Compute maximum root-to-tip height.
+  h <- max(ape::node.depth.edgelength(phy))
   
-  # 计算树的最大时间高度
-  h <- max(node.depth.edgelength(phy))
-  
-  # 保存原始图形参数
-  op <- par(
-    mar = c(5, 4, 2, 2),  # ✅ 底部和右侧加大，防止裁剪
-    xpd = NA             # ✅ 允许在图框外画刻度文字
+  op <- graphics::par(
+    mar = c(5, 4, 2, 2),
+    xpd = NA
   )
   
-  # 画树，右侧人为多留一点空间
-  plot(
+  graphics::plot(
     phy,
     show.tip.label = TRUE,
     cex = 0.7,
     x.lim = c(0, h * expand),
-    use.edge.length = TRUE
+    use.edge.length = TRUE,
+    ...
   )
   
-  # ✅ 用稳定的 axis 代替 axisPhylo（不容易被裁剪）
   ticks <- pretty(c(0, h))
-  axis(1, at = ticks, labels = round(ticks, 2))
+  graphics::axis(1, at = ticks, labels = round(ticks, 2))
   
-  # 恢复原始参数
-  par(op)
+  graphics::par(op)
+  invisible(phy)
 }

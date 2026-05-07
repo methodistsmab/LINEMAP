@@ -6,6 +6,8 @@
 #' @param x Tree-like object or result container.
 #'
 #' @return A tree-like object.
+#'
+#' @noRd
 .extract_tree_object <- function(x) {
   if (inherits(x, c("phylo", "hclust", "dendrogram", "dist")) || is.matrix(x)) {
     return(x)
@@ -35,6 +37,8 @@
 #' @param x Tree-like object.
 #'
 #' @return A `dendrogram` object.
+#'
+#' @noRd
 .coerce_to_dend <- function(x) {
   x <- .extract_tree_object(x)
 
@@ -73,6 +77,8 @@
 #' @param x Tree-like object.
 #'
 #' @return A `phylo` object.
+#'
+#' @noRd
 .coerce_to_phylo <- function(x) {
   x <- .extract_tree_object(x)
 
@@ -110,6 +116,8 @@
 #' @param d2 Second dendrogram.
 #'
 #' @return A `dendlist` containing aligned dendrograms.
+#'
+#' @noRd
 .align_and_prune_dendrograms <- function(d1, d2) {
   if (!requireNamespace("dendextend", quietly = TRUE)) {
     stop("Package `dendextend` is required for dendrogram alignment.")
@@ -149,6 +157,8 @@
 #'   intersection.
 #'
 #' @return A list with aligned `tree1`, `tree2`, and `labels`.
+#'
+#' @noRd
 .align_and_prune_phylo <- function(tree1, tree2, labels_keep = NULL) {
   if (!requireNamespace("ape", quietly = TRUE)) {
     stop("Package `ape` is required for phylo alignment.")
@@ -408,6 +418,8 @@ mrca_height_matrix <- function(tree, from_present = TRUE, T_max = NULL) {
 #' @param method Correlation method.
 #'
 #' @return Numeric scalar.
+#'
+#' @noRd
 .cor_safe <- function(x, y, method = "pearson") {
   ok <- is.finite(x) & is.finite(y)
   if (sum(ok) < 3L) {
@@ -423,6 +435,8 @@ mrca_height_matrix <- function(tree, from_present = TRUE, T_max = NULL) {
 #' @param hc An `hclust` object.
 #'
 #' @return Named numeric vector indexed by leaf labels.
+#'
+#' @noRd
 .leaf_first_merge_height <- function(hc) {
   n <- length(hc$labels)
   out <- numeric(n)

@@ -1,6 +1,29 @@
-# =========================
-# Build phylo from sim history + edge table
-# =========================
+#' Build ground-truth phylogenetic trees from simulation output
+#'
+#' Converts simulation histories and edge tables from `simulate_lineage()` into
+#' `phylo` trees. The primary tree uses simulated edge times, and an optional
+#' second tree can be built with all edge lengths set to one for
+#' division-scaled comparisons.
+#'
+#' @param sim Simulation output from `simulate_lineage()`.
+#' @param gRNA.num Integer. Number of gRNA/barcode positions.
+#' @param which Character. Barcode model to use, either `"hg"` or `"sg"`.
+#' @param use_full_edges Logical. If `TRUE`, use edge tables whose node labels
+#'   include barcode states and timing metadata.
+#' @param keep_alive_only Logical. If `TRUE`, prune edges that do not lead to
+#'   terminal alive cells.
+#' @param set_all_edge_time_to_one Logical. If `TRUE`, also return `phy1`, a
+#'   tree with all retained edge lengths set to one.
+#' @param rename_cells Logical. If `TRUE`, rename tip labels to cell IDs such as
+#'   `"C1"`, `"C2"`.
+#' @param plot Logical. If `TRUE`, plot selected output trees.
+#' @param plot_which Character. Which tree to plot: `"phy"`, `"phy1"`, `"both"`,
+#'   or `"none"`.
+#'
+#' @return A list with `phy`, optional `phy1`, the retained alive network,
+#'   terminal histories, and simple diagnostics.
+#'
+#' @export
 build_tree_from_sim <- function(sim,
                                 gRNA.num,
                                 which = c("hg", "sg"),
@@ -114,7 +137,17 @@ build_tree_from_sim <- function(sim,
 
 
 
-# 迭代版：保留到“叶结点 ⊆ status_strings ∪ from列” 为止
+#' Prune simulation edges to terminal alive cells
+#'
+#' Iteratively removes edges that end in leaves not matching terminal alive cell
+#' states.
+#'
+#' @param network Matrix or data frame with at least `from` and `to` columns.
+#' @param list List of terminal cell history matrices.
+#'
+#' @return The pruned network with pruning diagnostics stored as attributes.
+#'
+#' @noRd
 alive_network_iterative <- function(network, list) {
   # 允许 matrix / data.frame
   if (is.null(network) || nrow(network) == 0) return(network)
@@ -158,11 +191,21 @@ alive_network_iterative <- function(network, list) {
   network
 }
 
-# 从边表构建严格按时间的 phylo
-# 参数：
-# - trailing_numeric = 3 ：节点字符串末尾有3个数字
-# - time_pos = 1 ：第1个数字是绝对时间
-# - use_edge_time = TRUE ：优先使用 network$time 作为分支长度
+#' Convert an edge table to a phylo object
+#'
+#' Builds a rooted `phylo` object from a simulation edge table whose node labels
+#' include barcode states and trailing numeric metadata.
+#'
+#' @param network Data frame with columns `from`, `to`, and optionally `time`.
+#' @param trailing_numeric Number of numeric metadata fields at the end of each
+#'   node label.
+#' @param time_pos Which trailing numeric field stores absolute node time.
+#' @param use_edge_time Logical. If `TRUE`, use `network$time` as edge lengths;
+#'   otherwise use differences in parsed node times.
+#'
+#' @return A `phylo` object with node times stored in the `node_time` attribute.
+#'
+#' @noRd
 edges_to_phylo_from_table <- function(network,
                                       trailing_numeric = 3,
                                       time_pos = 1,

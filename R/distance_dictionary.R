@@ -5,6 +5,8 @@
 #' @param v Numeric vector of log-values.
 #'
 #' @return A numeric scalar.
+#'
+#' @noRd
 logsumexp <- function(v) {
   a <- max(v)
   if (!is.finite(a)) {
@@ -20,6 +22,8 @@ logsumexp <- function(v) {
 #' @param P Square numeric transition matrix.
 #'
 #' @return The validated matrix with row and column names filled if missing.
+#'
+#' @noRd
 .validate_transition_matrix <- function(P) {
   if (!is.matrix(P)) {
     stop("`P` must be a matrix.")
@@ -57,6 +61,8 @@ logsumexp <- function(v) {
 #' @param power Non-negative numeric scalar.
 #'
 #' @return Matrix power `P ^ power`.
+#'
+#' @noRd
 .matrix_power <- function(P, power) {
   if (!requireNamespace("expm", quietly = TRUE)) {
     stop("Package `expm` is required. Please install it before building distance dictionaries.")
@@ -78,7 +84,7 @@ logsumexp <- function(v) {
 #' @return A `(S + 1) x (S + 1)` matrix of negative log-likelihood distances,
 #'   where `S = nrow(P)`. The final row and column are named `missing_label`.
 #'
-#' @keywords internal
+#' @noRd
 .build_pair_loglik_single <- function(P,
                                       division,
                                       idx0 = 1,

@@ -9,6 +9,8 @@
 #' @param require_outgroup Logical; whether `root_outgroup` must be present.
 #'
 #' @return The validated distance matrix.
+#'
+#' @noRd
 .validate_distance_matrix_for_tree <- function(distance_matrix,
                                                root_outgroup = "C0",
                                                require_outgroup = TRUE) {

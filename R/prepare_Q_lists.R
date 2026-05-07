@@ -1,4 +1,21 @@
-# Create Q.list (hg) and Q.list1 (sg-like: only first row changes, others identity)
+#' Prepare transition matrix lists for hgRNA and sgRNA simulations
+#'
+#' Normalizes an input transition matrix and expands it into two per-gRNA
+#' transition matrix lists. `Q.list` is used for the hgRNA-like model, where all
+#' rows follow the transition matrix. `Q.list1` is used for the sgRNA-like model,
+#' where only the initial-state row can mutate and all other rows are identity.
+#'
+#' @param Q Square transition matrix.
+#' @param gRNA.num Integer. Number of gRNA/barcode positions.
+#' @param mutation.rate Numeric vector of mutation rates assigned to the first
+#'   row of the base transition matrix.
+#' @param recycle_blocks Integer. Number of times to repeat `mutation.rate`
+#'   blocks. Must satisfy `gRNA.num == length(mutation.rate) * recycle_blocks`.
+#'
+#' @return A list with normalized `Q`, hgRNA matrices `Q.list`, sgRNA matrices
+#'   `Q.list1`, and the number of states `N`.
+#'
+#' @export
 prepare_Q_lists <- function(Q,
                             gRNA.num = 200,
                             mutation.rate = seq(0.05, 0.25, 0.05),
@@ -40,15 +57,40 @@ prepare_Q_lists <- function(Q,
   list(Q = Q, Q.list = Q.list, Q.list1 = Q.list1, N = N)
 }
 
+#' Row-normalize a matrix
+#'
+#' @param M Numeric matrix.
+#'
+#' @return Row-normalized matrix.
+#'
+#' @noRd
 row.normalize <- function(M) {
   rs <- rowSums(M)
   rs[rs == 0] <- 1
   M / rs
 }
 
+#' Draw from a non-negative normal distribution
+#'
+#' @param n Number of observations.
+#' @param mean Mean of the normal distribution.
+#' @param sd Standard deviation of the normal distribution.
+#'
+#' @return Numeric vector with negative values truncated to zero.
+#'
+#' @noRd
 rposnorm <- function(n, mean, sd) pmax(0, rnorm(n, mean, sd))
 
 
+#' Parse a simulation node string
+#'
+#' @param s Node string containing barcode states followed by numeric metadata.
+#' @param trailing_numeric Number of numeric metadata fields at the end of `s`.
+#' @param time_pos Which trailing numeric field stores absolute time.
+#'
+#' @return A list with node `key` and absolute `time`.
+#'
+#' @noRd
 parse_node_string <- function(s, trailing_numeric = 3, time_pos = 1) {
   toks <- strsplit(trimws(s), "\\s+")[[1]]
   n <- length(toks)
@@ -60,4 +102,3 @@ parse_node_string <- function(s, trailing_numeric = 3, time_pos = 1) {
   t_abs <- as.numeric(num_tail[time_pos])
   list(key = key, time = t_abs)
 }
-

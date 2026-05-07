@@ -3,19 +3,24 @@
 #' High-level wrapper for preparing transition matrices, simulating lineage
 #' histories, and building phylogenetic trees.
 #'
-#' @param Q Transition matrix or simulation object.
+#' @param Q Square transition matrix used to generate per-gRNA transition
+#'   matrices.
 #' @param gRNA_num Integer. Number of gRNAs.
 #' @param mutation_rate Numeric vector. Mutation rates used for simulation.
 #' @param recycle_blocks Integer. Number of recycled blocks in preprocessing.
 #' @param t_max Integer. Maximum simulation time.
 #' @param cell_num Integer. Initial number of cells.
-#' @param which Character. guide RNA type, e.g. `"sg"` 'hg'.
-#' @param use_full_edges Logical. Whether to use full edges.
+#' @param which Character. Guide RNA model to use for the ground-truth tree,
+#'   either `"sg"` or `"hg"`.
+#' @param use_full_edges Logical. Whether to use full edge labels that include
+#'   barcode states and timing metadata.
 #' @param keep_alive_only Logical. Whether to retain only alive cells.
 #' @param set_all_edge_time_to_one Logical. Whether to set all edge lengths to 1.
 #' @param rename_cells Logical. Whether to rename cell labels.
 #' @param plot Logical. Whether to plot the output tree.
-#' @param plot_which Character. Which tree to plot, e.g. `"phy"` tree with exact time  or `"phy1"` tree with cell division number.
+#' @param plot_which Character. Which tree to plot: `"phy"` for time-scaled
+#'   edge lengths, `"phy1"` for unit/division-scaled edge lengths, `"both"`, or
+#'   `"none"`.
 #' @param seed Optional integer. Random seed for reproducibility.
 #'
 #' @return A list with three components:

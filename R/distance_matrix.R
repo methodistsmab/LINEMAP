@@ -6,6 +6,8 @@
 #' @param missing_label Label used for missing observations.
 #'
 #' @return Character scalar used as row/column label.
+#'
+#' @noRd
 .state_to_label <- function(x, missing_label = "MISSING") {
   if (is.na(x)) {
     missing_label
@@ -24,6 +26,8 @@
 #' @param use_list Logical; whether `tabs_list` is a list.
 #'
 #' @return A matrix dictionary for position `k`.
+#'
+#' @noRd
 .get_distance_tab <- function(tabs_list, k, use_list) {
   if (use_list) {
     tabs_list[[k]]
@@ -41,6 +45,8 @@
 #' @param n_positions Number of barcode positions to use.
 #'
 #' @return Logical scalar indicating whether `tabs_list` is a list.
+#'
+#' @noRd
 .validate_distance_tabs <- function(tabs_list, n_positions) {
   if (is.list(tabs_list)) {
     if (length(tabs_list) < n_positions) {
@@ -71,6 +77,8 @@
 #' @param k Barcode position.
 #'
 #' @return Invisibly returns `TRUE`.
+#'
+#' @noRd
 .check_dictionary_labels <- function(tabk, x_lab, y_lab, k) {
   if (!x_lab %in% rownames(tabk)) {
     stop(sprintf("State `%s` is not in rownames of dictionary %d.", x_lab, k))

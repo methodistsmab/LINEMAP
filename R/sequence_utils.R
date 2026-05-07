@@ -58,7 +58,7 @@ sequence_from_history <- function(history,
 #'
 #' @return A matrix with cells as rows and gRNA/barcode positions as columns.
 #'
-#' @export
+#' @noRd
 sequence.creat <- function(list) {
   sequence_from_history(history = list)
 }

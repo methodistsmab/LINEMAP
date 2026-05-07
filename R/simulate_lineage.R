@@ -1,6 +1,30 @@
-# =========================
-# 1) main simulation
-# =========================
+#' Simulate hgRNA and sgRNA lineage histories
+#'
+#' Runs a stochastic cell lineage simulation using per-gRNA transition matrices
+#' for both hgRNA-like and sgRNA-like barcode models. The simulator records full
+#' terminal cell histories and edge tables that can be converted into
+#' ground-truth phylogenetic trees.
+#'
+#' @param Q.list List of hgRNA transition matrices, one matrix per gRNA.
+#' @param Q.list1 List of sgRNA transition matrices, one matrix per gRNA.
+#' @param N Integer. Number of barcode states.
+#' @param t_max Numeric scalar. Maximum simulation time.
+#' @param cell.num Integer. Initial number of cells.
+#' @param gRNA.num Integer. Number of gRNA/barcode positions.
+#' @param death_rate_per_time Numeric. Per-time-unit death rate.
+#' @param p_quiesce_enter Numeric. Probability that a daughter cell enters
+#'   quiescence after division.
+#' @param quiesce_mean Numeric. Mean quiescence duration.
+#' @param quiesce_sd Numeric. Standard deviation of quiescence duration.
+#' @param p_senesce Numeric. Probability that a daughter cell becomes senescent.
+#' @param div_mean Numeric. Mean division time.
+#' @param div_sd Numeric. Standard deviation of division time.
+#' @param verbose Logical. If `TRUE`, print simulation progress.
+#'
+#' @return A list with edge tables, terminal states, and full histories for
+#'   hgRNA and sgRNA simulations.
+#'
+#' @export
 simulate_lineage <- function(Q.list,
                              Q.list1,
                              N,
