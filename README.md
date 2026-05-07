@@ -208,7 +208,8 @@ $C0_to_cell_prob_dist
 1660.512 1610.366 1730.166 1569.442 1579.336 1598.827 
 ```
 
-# Steps 4-5 can also be returned together with the comparison wrapper:
+## Steps 4-5 can also be returned together with the comparison wrapper:
+```
 combined.comparison <- compare_reconstructed_tree(
   pred_tree = tree.LINEMAP,
   true_tree = res$tree$phy,
