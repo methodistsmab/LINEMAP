@@ -16,8 +16,6 @@ With [remotes](https://cran.r-project.org/package=remotes):
 remotes::install_github("methodistsmab/LINEMAP")
 ```
 
-Replace `YOUR_GITHUB_USER` and `YOUR_REPO` with your account and repository name.
-
 ## Quick start
 
 ### Simulation data
@@ -58,6 +56,10 @@ sub <- sample_subtrees(
 
 # Plot the sampled division-scaled ground-truth subtree
 plot_time_scaled(sub$phy_sub1)
+
+![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
+
+
 
 ```
 ### Step 0: extract barcode squence from simulated data for LINEMAP reconstruction
@@ -136,6 +138,8 @@ topology.comparison <- compare_tree_topology(
 7 TreeDistance_distance 0.00000000
 8  TripletDistance_norm 0.00000000
 ```
+![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/tree_comparison.jpg)
+
 ### Step 5: compare pairwise MRCA heights and cell-depth relationships.
 ```
 time.lineage.comparison <- compare_time_lineage(
@@ -199,11 +203,6 @@ $C0_to_cell_prob_dist
     C836     C841     C852     C874     C878     C907 
 1660.512 1610.366 1730.166 1569.442 1579.336 1598.827 
 ```
-## Output of the sample case
-![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
-
-![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/tree_comparison.jpg)
-
 # Wrapper code:
 ### Steps 1-3 can also be run in one call with the reconstruction wrapper:
 ```
