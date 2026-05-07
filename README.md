@@ -233,7 +233,7 @@ combined.comparison <- compare_reconstructed_tree(
 )
 
 combined.comparison
-
+```
 
 A longer worked example ships as `inst/scripts/run_simulation.R` 
 
