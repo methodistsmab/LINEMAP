@@ -59,7 +59,7 @@ plot_time_scaled(sub$phy_sub1)
 
 ```
 
-![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png | width=800)
+![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png){:height="50%" width="50%"}
 
 ### Step 0: extract barcode squence from simulated data for LINEMAP reconstruction
 ```
