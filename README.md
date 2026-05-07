@@ -202,6 +202,8 @@ $C0_to_cell_prob_dist
 ## Output of the sample case
 ![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
 
+![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/tree_comparison.jpg)
+
 # Wrapper code:
 ### Steps 1-3 can also be run in one call with the reconstruction wrapper:
 ```
