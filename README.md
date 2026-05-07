@@ -57,11 +57,10 @@ sub <- sample_subtrees(
 # Plot the sampled division-scaled ground-truth subtree
 plot_time_scaled(sub$phy_sub1)
 
+```
+
 ![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
 
-
-
-```
 ### Step 0: extract barcode squence from simulated data for LINEMAP reconstruction
 ```
 # Prepare sampled cells and barcode sequences for reconstruction.
