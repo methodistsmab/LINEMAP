@@ -1,15 +1,28 @@
 Package: LINEMAP
-Title: Lineage Map Simulation and Phylogenetic Tree Construction
+Type: Package
+Title: Lineage Simulation and Reconstruction from Barcode Data
 Version: 0.1.0
-Authors@R: c(
-    person("LINEMAP", "Authors", role = c("aut", "cre"),
-           email = "your.email@example.com")
-    )
-Description: Simulates cell lineage histories with guide-RNA barcode dynamics,
-    builds phylogenetic trees from simulated edge tables, and provides helpers
-    for plotting and subtree sampling. Example transition data are included.
+Authors@R: person(given = "LINEMAP", family = "Developers",
+    role = c("aut", "cre"), email = "you@example.com")
+Description: Tools for simulating lineage trees from transition matrices and
+    reconstructing phylogenies from barcode sequence observations. The package
+    includes probability-distance dictionary construction, distance matrix
+    estimation, tree building wrappers, and tree comparison utilities.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Depends: R (>= 4.0.0)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: 
+    R (>= 4.1.0)
 Imports:
-    ape (>= 5.0)
+    ape,
+    expm,
+    stats
+Suggests:
+    dendextend,
+    knitr,
+    phangorn,
+    Quartet,
+    rmarkdown,
+    TreeDist
+VignetteBuilder: knitr
