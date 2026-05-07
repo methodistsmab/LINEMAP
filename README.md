@@ -60,7 +60,7 @@ sub <- sample_subtrees(
 plot_time_scaled(sub$phy_sub1)
 
 ```
-### Step 0: reconstruct a LINEMAP tree from simulated barcode data
+### Step 0: extract barcode squence from simulated data for LINEMAP reconstruction
 ```
 # Prepare sampled cells and barcode sequences for reconstruction.
 sample <- sub$keep_tips
