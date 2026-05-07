@@ -58,8 +58,10 @@ sub <- sample_subtrees(
 plot_time_scaled(sub$phy_sub1)
 
 ```
-<img src="[your-image-url.png](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)" width="800">
 
+![Alt text](https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png)
+
+<img src="https://github.com/methodistsmab/LINEMAP/blob/main/inst/images/output.png?raw=true" width="50%" alt="Alt text">
 
 ### Step 0: extract barcode squence from simulated data for LINEMAP reconstruction
 ```
