@@ -39,7 +39,11 @@ plot_time_scaled(sub$phy_sub1)
 # Reviewer example: reconstruct a LINEMAP tree from simulated barcode data
 # -------------------------------------------------------------------------
 
-# Step 1: Build missing-aware distance dictionaries for both hgRNA and sgRNA models.
+# Prepare sampled cells and barcode sequences for reconstruction.
+sample <- sub$keep_tips
+sequence <- sequence_from_history(res$sim$history$list_hg[sample])
+
+# Step 1: build missing-aware distance dictionaries.
 tabs_list_hgRNA <- build_pair_loglik_tables(
   P_or_list = res$prep$Q.list,
   division = 16
@@ -49,10 +53,6 @@ tabs_list_sgRNA <- build_pair_loglik_tables(
   P_or_list = res$prep$Q.list1,
   division = 16
 )
-
-# Use the sampled cells and reconstruct from hgRNA barcode histories.
-sample <- sub$keep_tips
-sequence <- sequence_from_history(res$sim$history$list_hg[sample])
 
 # Step 2: compute the probability distance matrix.
 distance.probability.matrix <- compute_prob_distance(
@@ -72,10 +72,7 @@ tree.LINEMAP <- build_tree_from_distance(
   drop_outgroup = TRUE
 )
 
-
-# The three reconstruction steps above
-#   dictionary -> distance matrix -> tree
-# can also be run in one call with the wrapper:
+# Steps 1-3 can also be run in one call with the reconstruction wrapper:
 tree.wrapper <- build_tree_from_sequence(
   sequence = sequence,
   P_or_list = res$prep$Q.list,
@@ -89,8 +86,6 @@ tree.wrapper <- build_tree_from_sequence(
 )
 
 tree.wrapper$tree
-
-
 
 # Step 4: compare the predicted tree with the ground-truth time-scaled tree.
 topology.comparison <- compare_tree_topology(
@@ -116,7 +111,7 @@ time.lineage.comparison <- compare_time_lineage(
 
 time.lineage.comparison
 
-# The topology and time-lineage comparisons can also be returned together.
+# Steps 4-5 can also be returned together with the comparison wrapper:
 combined.comparison <- compare_reconstructed_tree(
   pred_tree = tree.LINEMAP,
   true_tree = res$tree$phy,
@@ -129,5 +124,3 @@ combined.comparison <- compare_reconstructed_tree(
 )
 
 combined.comparison
-
-
