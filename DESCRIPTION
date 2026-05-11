@@ -3,7 +3,7 @@ Type: Package
 Title: Lineage Simulation and Reconstruction from Barcode Data
 Version: 0.1.0
 Authors@R: c(
-   person("Wang","Lin", role = c("aut", "cre"), email = "lwang3@houstonmethodist.org"),
+   person("Wang","Lin", role = c("aut", "cre", "cph"), email = "lwang3@houstonmethodist.org"),
    person("Yu","Xiaohui", role = c("aut", "ctb"), email = "xyu2@houstonmethodist.org"),
    person("Wan","Zhihao", role = c("aut", "ctb"), email = "zwan@houstonmethodist.org"),
    person("Wong","Stephen T.", role = c("aut", "cph"), email = "STWong@houstonmethodist.org"))
