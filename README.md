@@ -12,7 +12,6 @@ R package for simulating lineage histories with guide-RNA barcode dynamics.
 With [remotes](https://cran.r-project.org/package=remotes):
 
 ```r
-# if the Git repository root is this package folder (contains DESCRIPTION):
 remotes::install_github("methodistsmab/LINEMAP")
 ```
 
