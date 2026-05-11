@@ -6,8 +6,7 @@ Authors@R: c(
    person("Wang","Lin", role = c("aut", "cre"), email = "lwang3@houstonmethodist.org"),
    person("Yu","Xiaohui", role = c("aut", "ctb"), email = "xyu2@houstonmethodist.org"),
    person("Wan","Zhihao", role = c("aut", "ctb"), email = "zwan@houstonmethodist.org"),
-   person("Wong","Stephen T.", role = c("aut", "cph"), email = "STWong@houstonmethodist.org")
-)
+   person("Wong","Stephen T.", role = c("aut", "cph"), email = "STWong@houstonmethodist.org"))
 Description: Tools for simulating lineage trees from transition matrices and
     reconstructing phylogenies from barcode sequence observations. The package
     includes probability-distance dictionary construction, distance matrix
